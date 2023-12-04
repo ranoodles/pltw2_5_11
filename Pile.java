@@ -1,8 +1,11 @@
 public class Pile {
+    //instance variable
     private static int pieces;
+    //setting up pieces with random # between 10-50
     public static void setup() {
         pieces = 10 + (int) (Math.random() * 41);
     }
+    //removes num pieces from board
     public static boolean removePieces(int num) {
         if (num <= pieces / 2) {
             pieces -= num;
@@ -11,6 +14,7 @@ public class Pile {
             return false;
         }
     }
+    //displays the pile to user
     public static void display() {
         System.out.println("Pieces left: "+pieces);
         for (int i=0; i < pieces / 10; i++) {
@@ -24,6 +28,7 @@ public class Pile {
         }
         System.out.println();;
     }
+    //accessor - returns number of pieces on board
     public static int getPieces() {
         return pieces;
     }
