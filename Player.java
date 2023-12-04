@@ -27,4 +27,18 @@ public class Player {
     public String getName() {
         return name;
     }
+    public void remove() {
+        Scanner sc = new Scanner(System.in);
+        boolean result = false;
+        while (!result) {
+            System.out.println("How many pieces do you want to remove? ");
+            try {
+                int num = Integer.parseInt(sc.next());
+                if (num <= 0) result = false; else result = Pile.removePieces(num);
+            } catch (Exception e) {
+                result = false;
+            }
+            System.out.println(!result ? "You cannot remove that much or your input was invalid. Try again!" : "");
+        }
+    }
 }

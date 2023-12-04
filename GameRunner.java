@@ -5,12 +5,10 @@ public class GameRunner {
         Scanner sc = new Scanner(System.in);
         String play = "y";
         while (play.toLowerCase().equals("y")) {
-
             System.out.println("Would you like to play by yourself? (y/n)");
-            boolean autoplay = sc.nextLine().toLowerCase().equals("y");
+            boolean autoplay = sc.next().toLowerCase().equals("y");
             Player player1 = new Player();
             Player player2 = autoplay ? new AutoPlayer() : new Player();
-
             int playerTurn = (int) (Math.random()*2) + 1;
             Player currentPlayer = (playerTurn == 1) ? player1 : player2;
             Pile.setup();
@@ -19,22 +17,7 @@ public class GameRunner {
                 currentPlayer.display();
                 System.out.println("Here is the pile: ");
                 Pile.display();
-                boolean result = false;
-                int num = 0;
-                if (autoplay && currentPlayer == player2) {
-                    System.out.println("Bot removed " + Pile.removePieces());
-                } else {
-                    while (!result) {
-                        System.out.println("How many pieces do you want to remove? ");
-                        try {
-                            num = Integer.parseInt(sc.next());
-                            result = Pile.removePieces(num);
-                        } catch (Exception e) {
-                            result = false;
-                        }
-                        System.out.println(!result ? "You cannot remove that much or your input was invalid. Try again!" : "");
-                    }
-                }
+                currentPlayer.remove();
                 currentPlayer.addPoints();
             }
             if (currentPlayer == player1) {

@@ -11,11 +11,6 @@ public class Pile {
             return false;
         }
     }
-    public static int removePieces() {
-        int num = (int) (Math.random() * (pieces/2)) + 1;
-        pieces -= num;
-        return num;
-    }
     public static void display() {
         System.out.println("Pieces left: "+pieces);
         for (int i=0; i < pieces / 10; i++) {
